@@ -57,6 +57,7 @@ void main (){
             
         }
     }
+    int mySums[numThreads];
 #pragma omp parallel
     {
         int mySum = 0;
@@ -70,7 +71,10 @@ void main (){
             mySum = mySum + 4.0/(1.0+x*x);
         }
         
-        sum += mySum;
+        mySums[myId] = mySum;
+    }
+    for (i = 0; i < numThreads; i++) {
+        sum += mySums[i];
     }
     pi = step * sum;
 
