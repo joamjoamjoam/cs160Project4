@@ -38,7 +38,7 @@ void main (){
     
     if ((int) numOfStepsPerThread != numOfStepsPerThread) {
         // is a floating point
-        int nextStartPoint = 1;
+        int nextStartPoint = 0;
         for (i = 0; i < numThreads; i++) {
             int endPoint = (int) (numOfStepsPerThread * (i + 1));
             
