@@ -66,9 +66,9 @@ void main (){
         int mySum = 0;
         long i;
         int myId = omp_get_thread_num();
-        printf("my id is %d with %lu steps of work\n", myId, numOfStepsPerThread);
+        printf("my id is %d with %d steps of work\n", myId, end[myId ] - start[myId]);
         // do calc
-        for (i = (numOfStepsPerThread * myId); i < (numOfStepsPerThread * (myId + 1)); i++) {
+        for (i = start[myId]; i < end[myId]; i++) {
             x = (i+0.5)*step;
             mySum = mySum + 4.0/(1.0+x*x);
         }
