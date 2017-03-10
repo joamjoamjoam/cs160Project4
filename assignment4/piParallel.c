@@ -34,7 +34,7 @@ void main (){
     omp_set_num_threads(numThreads);
     long numOfStepsPerThread = num_steps/numThreads;
     
-#pragma parallel
+#pragma omp parallel
     {
         int mySum = 0;
         long i;
