@@ -50,7 +50,7 @@ void main (){
             printf("start[%d] = %d\n", i, start[i]);
             printf("end[%d] = %d\n", i, end[i]);
             
-            nextStartPoint = endPoint;
+            nextStartPoint = endPoint + 1;
         }
     }
     else{
