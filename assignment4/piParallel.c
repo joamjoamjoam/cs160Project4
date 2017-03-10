@@ -63,7 +63,7 @@ void main (){
     int mySums[numThreads];
 #pragma omp parallel
     {
-        int mySum = 0;
+        double mySum = 0;
         int i = 0;
         double myX = 0;
         int myId = omp_get_thread_num();
