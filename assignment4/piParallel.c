@@ -39,6 +39,7 @@ void main (){
         int mySum = 0;
         long i;
         int myId = omp_get_thread_num();
+        printf("my id is %d with %lu steps of work", myId, numOfStepsPerThread);
         // do calc
         for (i = (numOfStepsPerThread * myId); i < (numOfStepsPerThread * (myId + 1)); i++) {
             x = (i+0.5)*step;
