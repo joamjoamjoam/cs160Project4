@@ -13,7 +13,7 @@ static long num_steps = 100000;
 double step;
 long stepsCompleted = 0;
 double ids[10];
-double numThreads = 8;
+double numThreads = 7;
 
 void main (){
     int i;
