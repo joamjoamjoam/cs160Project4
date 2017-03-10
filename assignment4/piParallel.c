@@ -24,7 +24,7 @@ void main (){
         sum = sum + 4.0/(1.0+x*x);
     }
     pi = step * sum;
-    printf("sequential done with pi = %f", pi);
+    printf("sequential done with pi = %f\n", pi);
     
     x = 0;
     pi = 0;
@@ -39,7 +39,7 @@ void main (){
         int mySum = 0;
         long i;
         int myId = omp_get_thread_num();
-        printf("my id is %d with %lu steps of work", myId, numOfStepsPerThread);
+        printf("my id is %d with %lu steps of work\n", myId, numOfStepsPerThread);
         // do calc
         for (i = (numOfStepsPerThread * myId); i < (numOfStepsPerThread * (myId + 1)); i++) {
             x = (i+0.5)*step;
@@ -50,6 +50,6 @@ void main (){
     }
     pi = step * sum;
 
-printf("parallel end with pi = %f", pi);
+printf("parallel end with pi = %f\n", pi);
 }
 
