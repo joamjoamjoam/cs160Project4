@@ -13,7 +13,7 @@ static long num_steps = 100000;
 double step;
 long stepsCompleted = 0;
 double ids[10];
-double numThreads = 7;
+int numThreads = 7;
 
 void main (){
     int i;
@@ -32,8 +32,32 @@ void main (){
     
     
     omp_set_num_threads(numThreads);
+    int start[numThreads];
+    int end[numThreads];
     double numOfStepsPerThread = (double) num_steps/ (double)numThreads;
-    printf("numsteps = %f\n", numOfStepsPerThread);
+    
+    if ((int) numOfStepsPerThread != numOfStepsPerThread) {
+        // is a floating point
+        int nextStartPoint = 0;
+        for (i = 0; i < numThreads; i++) {
+            int endPoint = (int) (numOfStepsPerThread * (i + 1));
+            
+            start[i] = nextStartPoint;
+            end[i] = endPoint;
+            
+            printf("start[%d] = %d", i, start[i]);
+            printf("end[%d] = %d", i, end[i]);
+            
+            nextStartPoint = endPoint + 1;
+        }
+    }
+    else{
+        for (i = 0; i < numThreads; i++) {
+            start[i] = (numOfStepsPerThread * i);
+            end[i] = (numOfStepsPerThread * (i+1));
+            
+        }
+    }
     
     
     
