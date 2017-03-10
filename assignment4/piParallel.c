@@ -21,7 +21,7 @@ void main (){
     step = 1.0/(double) num_steps;
     for (i=0;i< num_steps; i++){
         x = (i+0.5)*step;
-        if (i < 10) {
+        if (i > 14285 && i <= 14296) {
             printf("Seq x = %f for step %d\n", x, i);
         }
         sum = sum + 4.0/(1.0+x*x);
@@ -72,7 +72,7 @@ void main (){
         for (i = start[myId]; i <= end[myId]; i++) {
             myX = (i+0.5)*step;
             
-            if (myId == 0 && i < 10) {
+            if (myId == 1 && i >= start[i] && i <= start[i] + 10) {
                 printf("Thread x = %f for step %d\n", myX, i);
             }
             
