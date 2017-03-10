@@ -64,6 +64,8 @@ void main (){
         int i = 0;
         double x = 0;
         int myId = omp_get_thread_num();
+        
+        double step = 1.0/(double) (end[myId] - start[myId]);
         printf("my id is %d with %d steps of work\n", myId, end[myId] - start[myId]);
         // do calc
         for (i = start[myId]; i <= end[myId]; i++) {
@@ -71,12 +73,12 @@ void main (){
             mySum = mySum + 4.0/(1.0+x*x);
         }
         
-        mySums[myId] = mySum;
+        mySums[myId] = mySum * step;
     }
     for (i = 0; i < numThreads; i++) {
         sum += mySums[i];
     }
-    pi = step * sum;
+    pi = sum;
 
 printf("parallel end with pi = %f\n", pi);
 }
