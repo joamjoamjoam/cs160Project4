@@ -69,7 +69,7 @@ void main (){
         int myId = omp_get_thread_num();
         //printf("my id is %d with %d steps of work\n", myId, end[myId] - start[myId]);
         // do calc
-        for (i = start[myId]; i < end[myId]; i++) {
+        for (i = start[myId]; i <= end[myId]; i++) {
             myX = (i+0.5)*step;
             
 //            if (myId == 1 && i >= start[myId] && i <= start[myId] + 10) {
