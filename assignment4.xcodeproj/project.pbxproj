@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F5057E361E72ACDA00B5A01E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F5057E351E72ACDA00B5A01E /* main.c */; settings = {COMPILER_FLAGS = "-fopenmp"; }; };
+		F5057E361E72ACDA00B5A01E /* piParallel.c in Sources */ = {isa = PBXBuildFile; fileRef = F5057E351E72ACDA00B5A01E /* piParallel.c */; settings = {COMPILER_FLAGS = "-fopenmp"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		F5057E321E72ACDA00B5A01E /* assignment4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = assignment4; sourceTree = BUILT_PRODUCTS_DIR; };
-		F5057E351E72ACDA00B5A01E /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F5057E351E72ACDA00B5A01E /* piParallel.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = piParallel.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +57,7 @@
 		F5057E341E72ACDA00B5A01E /* assignment4 */ = {
 			isa = PBXGroup;
 			children = (
-				F5057E351E72ACDA00B5A01E /* main.c */,
+				F5057E351E72ACDA00B5A01E /* piParallel.c */,
 			);
 			path = assignment4;
 			sourceTree = "<group>";
@@ -120,7 +120,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5057E361E72ACDA00B5A01E /* main.c in Sources */,
+				F5057E361E72ACDA00B5A01E /* piParallel.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
