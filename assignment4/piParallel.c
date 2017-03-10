@@ -9,14 +9,45 @@
 #include <stdio.h>
 #include "omp.h"
 
-int main(int argc, const char * argv[]) {
-    #pragma parallel
-    {
-        int id = 0;
-        
-        printf("hello(%d)", id);
-        printf("world(%d)", id);
-        
+static long num_steps = 100000;
+double step;
+long stepsCompleted = 0;
+double ids[10];
+double numThreads = 8;
+
+void main (){
+    int i;
+    double x,pi,sum = 0.0;
+    step = 1.0/(double) num_steps;
+    for (i=0;i< num_steps; i++){
+        x = (i+0.5)*step;
+        sum = sum + 4.0/(1.0+x*x);
     }
-    return 0;
+    pi = step * sum;
+    printf("sequential done with pi = %f", pi);
+    
+    x = 0;
+    pi = 0;
+    sum = 0;
+    
+    
+    omp_set_num_threads(numThreads);
+    long numOfStepsPerThread = num_steps/numThreads;
+    
+#pragma parallel
+    {
+        int mySum = 0;
+        int myId = omp_get_thread_num();
+        // do calc
+        for (long i = (numOfStepsPerThread * myId); i < (numOfStepsPerThread * (myId + 1)); i++) {
+            x = (i+0.5)*step;
+            mySum = mySum + 4.0/(1.0+x*x);
+        }
+        
+        sum += mySum;
+    }
+    pi = step * sum;
+
+printf("parallel end with pi = %f", pi);
 }
+
