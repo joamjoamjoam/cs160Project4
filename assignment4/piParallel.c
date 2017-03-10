@@ -37,9 +37,10 @@ void main (){
 #pragma parallel
     {
         int mySum = 0;
+        long i;
         int myId = omp_get_thread_num();
         // do calc
-        for (long i = (numOfStepsPerThread * myId); i < (numOfStepsPerThread * (myId + 1)); i++) {
+        for (i = (numOfStepsPerThread * myId); i < (numOfStepsPerThread * (myId + 1)); i++) {
             x = (i+0.5)*step;
             mySum = mySum + 4.0/(1.0+x*x);
         }
