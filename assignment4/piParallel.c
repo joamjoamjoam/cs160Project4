@@ -60,7 +60,7 @@ void main (){
             
         }
     }
-    int mySums[numThreads];
+    double mySums[numThreads];
 #pragma omp parallel
     {
         double mySum = 0;
