@@ -45,8 +45,8 @@ void main (){
             start[i] = nextStartPoint;
             end[i] = endPoint;
             
-            printf("start[%d] = %d", i, start[i]);
-            printf("end[%d] = %d", i, end[i]);
+            printf("start[%d] = %d\n", i, start[i]);
+            printf("end[%d] = %d\n", i, end[i]);
             
             nextStartPoint = endPoint + 1;
         }
