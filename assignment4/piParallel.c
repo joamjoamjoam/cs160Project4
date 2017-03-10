@@ -72,7 +72,7 @@ void main (){
         for (i = start[myId]; i <= end[myId]; i++) {
             myX = (i+0.5)*step;
             
-            if (myId == 1 && i >= start[i] && i <= start[i] + 10) {
+            if (myId == 1 && i >= start[myId] && i <= start[myId] + 10) {
                 printf("Thread x = %f for step %d\n", myX, i);
             }
             
