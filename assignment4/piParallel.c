@@ -26,9 +26,8 @@ void main (){
     pi = step * sum;
     printf("sequential done with pi = %f\n", pi);
     
-    x = 0;
-    pi = 0;
-    sum = 0;
+    pi = 0.0;
+    sum = 0.0;
     
     
     omp_set_num_threads(numThreads);
@@ -58,13 +57,11 @@ void main (){
             
         }
     }
-    
-    
-    
 #pragma omp parallel
     {
         int mySum = 0;
         int i = 0;
+        double x = 0;
         int myId = omp_get_thread_num();
         printf("my id is %d with %d steps of work\n", myId, end[myId] - start[myId]);
         // do calc
