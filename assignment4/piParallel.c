@@ -38,7 +38,7 @@ void main (){
     
     if ((int) numOfStepsPerThread != numOfStepsPerThread) {
         // is a floating point
-        int nextStartPoint = 0;
+        int nextStartPoint = 1;
         for (i = 0; i < numThreads; i++) {
             int endPoint = (int) (numOfStepsPerThread * (i + 1));
             
@@ -64,7 +64,7 @@ void main (){
 #pragma omp parallel
     {
         int mySum = 0;
-        long i;
+        int i = 0;
         int myId = omp_get_thread_num();
         printf("my id is %d with %d steps of work\n", myId, end[myId] - start[myId]);
         // do calc
