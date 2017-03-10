@@ -32,7 +32,10 @@ void main (){
     
     
     omp_set_num_threads(numThreads);
-    long numOfStepsPerThread = num_steps/numThreads;
+    double numOfStepsPerThread = (double) num_steps/ (double)numThreads;
+    printf("numsteps = %f\n", numOfStepsPerThread);
+    
+    
     
 #pragma omp parallel
     {
