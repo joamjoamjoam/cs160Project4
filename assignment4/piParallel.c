@@ -21,6 +21,9 @@ void main (){
     step = 1.0/(double) num_steps;
     for (i=0;i< num_steps; i++){
         x = (i+0.5)*step;
+        if (i < 10) {
+            printf("Seq x = %f for step %d\n", x, i);
+        }
         sum = sum + 4.0/(1.0+x*x);
     }
     pi = step * sum;
