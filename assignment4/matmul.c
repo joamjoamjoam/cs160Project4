@@ -50,9 +50,7 @@ int main(int argc, char** argv)
         {
             #pragma omp section
             for(i=0; i<N; i++)
-                #pragma omp for
                 for(j=0; j<N; j++)
-                    #pragma omp for
                     for(k=0; k<N; k++)
                         Cp[i*N+j]+=A[i*N+k]*B[k*N+j];
         }
