@@ -46,13 +46,16 @@ int main(int argc, char** argv)
     // please change this into a parallel version
     #pragma omp parallel
     {
-        #pragma omp for reduction(+:Cp)
-        for(i=0; i<N; i++)
-            #pragma omp for reduction(+:Cp)
-            for(j=0; j<N; j++)
-                #pragma omp for reduction(+:Cp)
-                for(k=0; k<N; k++)
-                    Cp[i*N+j]+=A[i*N+k]*B[k*N+j];
+        #pragma omp sections
+        {
+            #pragma omp section
+            for(i=0; i<N; i++)
+                #pragma omp for
+                for(j=0; j<N; j++)
+                    #pragma omp for
+                    for(k=0; k<N; k++)
+                        Cp[i*N+j]+=A[i*N+k]*B[k*N+j];
+        }
     }
     double endTime = omp_get_wtime();
 
