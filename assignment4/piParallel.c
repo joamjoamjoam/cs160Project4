@@ -95,7 +95,7 @@ void main (int argc, char** argv){
         int i = 0;
         double myX = 0;
         int myId = omp_get_thread_num();
-# pragma omp for reduction (+:mySum)
+# pragma omp for
         for (i = start[myId]; i < end[myId]; i++) {
             myX = (i+0.5)*step;
             
