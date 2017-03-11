@@ -65,14 +65,11 @@ void main (int argc, char** argv){
         int i = 0;
         double myX = 0;
         int myId = omp_get_thread_num();
-        //printf("my id is %d with %d steps of work\n", myId, end[myId] - start[myId]);
-        // do calc
+        
         for (i = start[myId]; i < end[myId]; i++) {
             myX = (i+0.5)*step;
             
-            //            if (myId == 1 && i >= start[myId] && i <= start[myId] + 10) {
-            //                printf("Thread x = %f for step %d\n", myX, i);
-            //            }
+            }
             
             mySum = mySum + 4.0/(1.0+myX*myX);
         }
@@ -100,9 +97,8 @@ void main (int argc, char** argv){
         int i = 0;
         double myX = 0;
         int myId = omp_get_thread_num();
-        //printf("my id is %d with %d steps of work\n", myId, end[myId] - start[myId]);
-        // do calc
-        # pragma omp for
+        
+        # pragma omp for reduction (+:mySum)
             for (i = start[myId]; i < end[myId]; i++) {
                 myX = (i+0.5)*step;
             
