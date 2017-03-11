@@ -99,7 +99,7 @@ void main (int argc, char** argv){
         double loopX = 0;
         double loopSum = 0;
         step = 1.0/(double) num_steps;
-        # pragma omp for
+        # pragma omp for reduction (+:sum)
             for (i=0; i < num_steps; i++){
                 loopX = (i+0.5)*step;
                 loopSum = loopSum + 4.0/(1.0+loopX*loopX);
