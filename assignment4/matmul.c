@@ -47,17 +47,12 @@ int main(int argc, char** argv)
     double begin = omp_get_wtime();
     
     // please change this into a parallel version
-    #pragma omp parallel
-    {
-        #pragma omp sections
-        {
-            #pragma omp section
-            for(i=0; i<N; i++)
-                for(j=0; j<N; j++)
-                    for(k=0; k<N; k++)
-                        Cp[i*N+j]+=A[i*N+k]*B[k*N+j];
-        }
-    }
+    #pragma omp for default(None) private(i,j,k) shared (Cp,A,B)
+    for(i=0; i<N; i++)
+        for(j=0; j<N; j++)
+            for(k=0; k<N; k++)
+                Cp[i*N+j]+=A[i*N+k]*B[k*N+j];
+
     double endTime = omp_get_wtime();
 
 	
