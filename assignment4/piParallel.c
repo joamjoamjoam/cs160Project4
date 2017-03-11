@@ -16,7 +16,7 @@ long stepsCompleted = 0;
 double ids[10];
 int numThreads = 7;
 
-void main (){
+void main (int argc, char** argv){
     double begin = omp_get_wtime();
     int i;
     double x,pi,sum = 0.0;
