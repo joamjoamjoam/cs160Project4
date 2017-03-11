@@ -41,6 +41,9 @@ int main(int argc, char** argv)
     //////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////
     int numThreads = atoi(argv[1]);
+    
+    omp_set_num_threads(numThreads);
+    
     double begin = omp_get_wtime();
     
     // please change this into a parallel version
@@ -50,9 +53,7 @@ int main(int argc, char** argv)
         {
             #pragma omp section
             for(i=0; i<N; i++)
-                #pragma omp section
                 for(j=0; j<N; j++)
-                    #pragma omp section
                     for(k=0; k<N; k++)
                         Cp[i*N+j]+=A[i*N+k]*B[k*N+j];
         }
@@ -60,7 +61,7 @@ int main(int argc, char** argv)
     double endTime = omp_get_wtime();
 
 	
-	printf("The parallel version of matrix multiplication costs %f seconds\n", (endTime -begin));
+	printf("The parallel version of matrix multiplication costs %f seconds with %d threads\n", (endTime -begin)), numThreads;
     
     //////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////
