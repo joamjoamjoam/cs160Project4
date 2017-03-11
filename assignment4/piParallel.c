@@ -105,7 +105,7 @@ void main (int argc, char** argv){
                 loopX = (i+0.5)*step;
                 loopSum = loopSum + 4.0/(1.0+loopX*loopX);
                 
-                sum += loopSum
+                sum += loopSum;
             }
         pi = step * sum;
     }
