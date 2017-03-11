@@ -41,7 +41,7 @@ int main(int argc, char** argv)
     //////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////
     int numThreads = atoi(argv[1]);
-    printf("numThreads = %d", numThreads);
+    printf("numThreads = %d\n", numThreads);
     omp_set_num_threads(numThreads);
     
     double begin = omp_get_wtime();
@@ -61,7 +61,7 @@ int main(int argc, char** argv)
     double endTime = omp_get_wtime();
 
 	
-	printf("The parallel version of matrix multiplication costs %f seconds with %d threads\n", (endTime -begin)), numThreads;
+	printf("The parallel version of matrix multiplication costs %f seconds with %d threads\n", (endTime -begin), numThreads);
     
     //////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////
