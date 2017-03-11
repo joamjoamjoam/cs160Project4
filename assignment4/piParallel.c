@@ -96,20 +96,27 @@ void main (int argc, char** argv){
     begin = omp_get_wtime();
 # pragma omp parallel
     {
-        double loopX = 0;
-        double loopSum = 0;
-        int myID =
-        step = 1.0/(double) num_steps;
-        # pragma omp for reduction (+:sum)
-            for (i=0; i < num_steps; i++){
-                loopX = (i+0.5)*step;
-                loopSum = loopSum + 4.0/(1.0+loopX*loopX);
-                
-                sum += loopSum;
+        double mySum = 0;
+        int i = 0;
+        double myX = 0;
+        int myId = omp_get_thread_num();
+        //printf("my id is %d with %d steps of work\n", myId, end[myId] - start[myId]);
+        // do calc
+        # pragma omp for
+            for (i = start[myId]; i < end[myId]; i++) {
+                myX = (i+0.5)*step;
+            
+                mySum = mySum + 4.0/(1.0+myX*myX);
             }
-        pi = step * sum;
+        
+            mySums[myId] = mySum;
     }
     
+    for (i = 0; i < numThreads; i++) {
+        sum += mySums[i];
+    }
+    
+    pi = step * sum;
     
     endTime = omp_get_wtime();
     
