@@ -7,6 +7,7 @@
 //
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "omp.h"
 
 static long num_steps = 100000;
@@ -19,6 +20,7 @@ void main (){
     double begin = omp_get_wtime();
     int i;
     double x,pi,sum = 0.0;
+    numThreads = atoi(argv[1]);
     step = 1.0/(double) num_steps;
     for (i=0;i< num_steps; i++){
         x = (i+0.5)*step;
@@ -91,7 +93,7 @@ void main (){
     pi = step * sum;
     
     endTime = omp_get_wtime();
-    printf("parallel end with pi = %f in %f seconds\n", pi, endTime - begin);
+    printf("parallel end with %d threds, pi = %f in %f seconds\n", numThreads ,pi, endTime - begin);
     
     // start looped
     
