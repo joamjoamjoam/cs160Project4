@@ -41,7 +41,6 @@ int main(int argc, char** argv)
     //////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////
     int numThreads = atoi(argv[1]);
-    printf("numThreads = %d\n", numThreads);
     omp_set_num_threads(numThreads);
     
     double begin = omp_get_wtime();
@@ -109,6 +108,28 @@ int _initialize(double * matrix)
 }
 
 /*
+ 1 thread:
+ 
+ 
+ 2 threads:
+ 
+ 
+ 3 threads:
+ 
+ 
+ 4 threads:
+ 
+ 
+ 5 threads:
+ 
+ 
+ 6 threads:
+ 
+ 
+ 7 threads:
+ 
+ 
+ 8 threads:
  
  
  
