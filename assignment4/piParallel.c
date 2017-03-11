@@ -16,22 +16,25 @@ double ids[10];
 int numThreads = 7;
 
 void main (){
+    double begin = omp_get_wtime();
     int i;
     double x,pi,sum = 0.0;
     step = 1.0/(double) num_steps;
     for (i=0;i< num_steps; i++){
         x = (i+0.5)*step;
-//        if (i >= 14285 && i <= 14296) {
-//            printf("Seq x = %f for step %d\n", x, i);
-//        }
+        //        if (i >= 14285 && i <= 14296) {
+        //            printf("Seq x = %f for step %d\n", x, i);
+        //        }
         sum = sum + 4.0/(1.0+x*x);
     }
     pi = step * sum;
-    printf("sequential done with pi = %f\n", pi);
+    double end = omp_get_wtime();
+    printf("sequential done with pi = %f in %f seconds\n", pi, end - begin);
     
     pi = 0.0;
     sum = 0.0;
     
+    begin = omp_get_wtime();
     
     omp_set_num_threads(numThreads);
     int start[numThreads];
@@ -72,9 +75,9 @@ void main (){
         for (i = start[myId]; i < end[myId]; i++) {
             myX = (i+0.5)*step;
             
-//            if (myId == 1 && i >= start[myId] && i <= start[myId] + 10) {
-//                printf("Thread x = %f for step %d\n", myX, i);
-//            }
+            //            if (myId == 1 && i >= start[myId] && i <= start[myId] + 10) {
+            //                printf("Thread x = %f for step %d\n", myX, i);
+            //            }
             
             mySum = mySum + 4.0/(1.0+myX*myX);
         }
@@ -84,8 +87,35 @@ void main (){
     for (i = 0; i < numThreads; i++) {
         sum += mySums[i];
     }
+    
     pi = step * sum;
-
-printf("parallel end with pi = %f\n", pi);
+    
+    end = omp_get_wtime();
+    printf("parallel end with pi = %f in %f seconds\n", pi, end - begin);
+    
+    // start looped
+    
+    pi = 0;
+    sum = 0;
+    
+    begin = omp_get_wtime();
+# pragma omp parallel
+    {
+        double loopX = 0;
+        double loopSum = 0;
+        step = 1.0/(double) num_steps;
+        # pragma omp for
+            for (i=0; i < num_steps; i++){
+                loopX = (i+0.5)*step;
+                loopSum = loopSum + 4.0/(1.0+loopX*loopX);
+            }
+        pi = step * loopSum;
+    }
+    
+    
+    end = omp_get_wtime();
+    
+    printf("Looped end with pi = %f in %f seconds\n", pi, end - begin);
+    
 }
 
