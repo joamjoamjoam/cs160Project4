@@ -24,9 +24,6 @@ void main (int argc, char** argv){
     step = 1.0/(double) num_steps;
     for (i=0;i< num_steps; i++){
         x = (i+0.5)*step;
-        //        if (i >= 14285 && i <= 14296) {
-        //            printf("Seq x = %f for step %d\n", x, i);
-        //        }
         sum = sum + 4.0/(1.0+x*x);
     }
     pi = step * sum;
@@ -51,10 +48,6 @@ void main (int argc, char** argv){
             
             start[i] = nextStartPoint;
             end[i] = endPoint;
-            
-            printf("start[%d] = %d\n", i, start[i]);
-            printf("end[%d] = %d\n", i, end[i]);
-            
             nextStartPoint = endPoint;
         }
     }
