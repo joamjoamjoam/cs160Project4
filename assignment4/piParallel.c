@@ -28,8 +28,8 @@ void main (){
         sum = sum + 4.0/(1.0+x*x);
     }
     pi = step * sum;
-    double end = omp_get_wtime();
-    printf("sequential done with pi = %f in %f seconds\n", pi, end - begin);
+    double endTime = omp_get_wtime();
+    printf("sequential done with pi = %f in %f seconds\n", pi, endTime - begin);
     
     pi = 0.0;
     sum = 0.0;
@@ -90,8 +90,8 @@ void main (){
     
     pi = step * sum;
     
-    end = omp_get_wtime();
-    printf("parallel end with pi = %f in %f seconds\n", pi, end - begin);
+    endTime = omp_get_wtime();
+    printf("parallel end with pi = %f in %f seconds\n", pi, endTime - begin);
     
     // start looped
     
@@ -113,9 +113,9 @@ void main (){
     }
     
     
-    end = omp_get_wtime();
+    endTime = omp_get_wtime();
     
-    printf("Looped end with pi = %f in %f seconds\n", pi, end - begin);
+    printf("Looped end with pi = %f in %f seconds\n", pi, endTime - begin);
     
 }
 
