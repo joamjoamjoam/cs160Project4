@@ -27,16 +27,16 @@ int main(int argc, char** argv)
 	_initialize(Cp);
 
     // sequential version
-	gettimeofday(&start, NULL);
-	for(i=0; i<N; i++)
-	  for(j=0; j<N; j++)
-		for(k=0; k<N; k++)
-		  Cs[i*N+j]+=A[i*N+k]*B[k*N+j];
-	gettimeofday(&end, NULL);
-
-	timeCost=1000000*(end.tv_sec-start.tv_sec)+(end.tv_usec-start.tv_usec);
-	timeCost/=1000000;
-    printf("The squential version of matrix multiplication costs %lf seconds\n", timeCost);
+//	gettimeofday(&start, NULL);
+//	for(i=0; i<N; i++)
+//	  for(j=0; j<N; j++)
+//		for(k=0; k<N; k++)
+//		  Cs[i*N+j]+=A[i*N+k]*B[k*N+j];
+//	gettimeofday(&end, NULL);
+//
+//	timeCost=1000000*(end.tv_sec-start.tv_sec)+(end.tv_usec-start.tv_usec);
+//	timeCost/=1000000;
+//    printf("The squential version of matrix multiplication costs %lf seconds\n", timeCost);
 
     //////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////
@@ -50,7 +50,9 @@ int main(int argc, char** argv)
         {
             #pragma omp section
             for(i=0; i<N; i++)
+                #pragma omp section
                 for(j=0; j<N; j++)
+                    #pragma omp section
                     for(k=0; k<N; k++)
                         Cp[i*N+j]+=A[i*N+k]*B[k*N+j];
         }
