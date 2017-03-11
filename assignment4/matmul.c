@@ -1,18 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
-
+#include "omp.h"
 #define N 1000
 
 int initialize(double * matrix);
 int _initialize(double * matrix);
 
-int main()
+
+int main(int argc, char** argv)
 {
 	int i, j, k;
 	double *A, *B, *Cs, *Cp;
 	struct timeval start, end;
 	double timeCost;
+    
 
 	A=(double *)malloc(sizeof(double)*N*N);
 	B=(double *)malloc(sizeof(double)*N*N);
@@ -38,17 +40,25 @@ int main()
 
     //////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////
+    int numThreads = atoi(argv[1]);
+    double begin = omp_get_wtime();
+    
     // please change this into a parallel version
-	gettimeofday(&start, NULL);
-	for(i=0; i<N; i++)
-	  for(j=0; j<N; j++)
-		for(k=0; k<N; k++)
-		  Cp[i*N+j]+=A[i*N+k]*B[k*N+j];
-	gettimeofday(&end, NULL);
+    #pragma omp parallel
+    {
+        #pragma omp for reduction(+:Cp)
+        for(i=0; i<N; i++)
+            #pragma omp for reduction(+:Cp)
+            for(j=0; j<N; j++)
+                #pragma omp for reduction(+:Cp)
+                for(k=0; k<N; k++)
+                    Cp[i*N+j]+=A[i*N+k]*B[k*N+j];
+    }
+    double endTime = omp_get_wtime();
 
-	timeCost=1000000*(end.tv_sec-start.tv_sec)+(end.tv_usec-start.tv_usec);
-	timeCost/=1000000;
-	printf("The parallel version of matrix multiplication costs %lf seconds\n", timeCost);
+	
+	printf("The parallel version of matrix multiplication costs %f seconds\n", (endTime -begin));
+    
     //////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////
 	

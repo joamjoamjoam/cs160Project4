@@ -116,3 +116,58 @@ void main (int argc, char** argv){
     
 }
 
+/***************************************************************************************************
+                                            Timings
+ 1 Thread:
+ 
+ sequential done with 1 threads, pi = 3.141593 in 0.002135 seconds
+ parallel end with 1 threads, pi = 3.141593 in 0.002113 seconds
+ Looped end with 1 threads, pi = 3.141593 in 0.002095 seconds
+ 
+ 2 Threads:
+ 
+ sequential done with 2 threads, pi = 3.141593 in 0.002094 seconds
+ parallel end with 2 threads, pi = 3.141593 in 0.001110 seconds
+ Looped end with 2 threads, pi = 3.141593 in 0.001062 seconds
+ 
+ 3 Threads:
+ 
+ sequential done with 3 threads, pi = 3.141593 in 0.002095 seconds
+ parallel end with 3 threads, pi = 3.141593 in 0.000774 seconds
+ Looped end with 3 threads, pi = 3.141593 in 0.000698 seconds
+ 
+ 4 Threads:
+ 
+ sequential done with 4 threads, pi = 3.141593 in 0.002095 seconds
+ parallel end with 4 threads, pi = 3.141593 in 0.000617 seconds
+ Looped end with 4 threads, pi = 3.141593 in 0.000524 seconds
+ 
+ 5 Threads:
+ 
+ sequential done with 5 threads, pi = 3.141593 in 0.002095 seconds
+ parallel end with 5 threads, pi = 3.141593 in 0.000524 seconds
+ Looped end with 5 threads, pi = 3.141593 in 0.000445 seconds
+ 
+ 6 Threads:
+ 
+ sequential done with 6 threads, pi = 3.141593 in 0.002302 seconds
+ parallel end with 6 threads, pi = 3.141593 in 0.000563 seconds
+ Looped end with 6 threads, pi = 3.141593 in 0.000427 seconds
+ 
+ 7 Threads:
+ 
+ sequential done with 7 threads, pi = 3.141593 in 0.002101 seconds
+ parallel end with 7 threads, pi = 3.141593 in 0.000467 seconds
+ Looped end with 7 threads, pi = 3.141593 in 0.000304 seconds
+ 
+ 8 Threads:
+ 
+ sequential done with 8 threads, pi = 3.141593 in 0.002092 seconds
+ parallel end with 8 threads, pi = 3.141593 in 0.000374 seconds
+ Looped end with 8 threads, pi = 3.141593 in 0.000265 seconds
+ 
+ */
+
+
+
+
