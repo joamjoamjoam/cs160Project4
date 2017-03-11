@@ -71,6 +71,7 @@ int main(int argc, char** argv)
                 return -1;
             }
       }
+    printf("Verified Correctly");
 
     // release resources and return
     free(A);
