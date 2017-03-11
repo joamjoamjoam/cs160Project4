@@ -27,16 +27,16 @@ int main(int argc, char** argv)
 	_initialize(Cp);
 
     // sequential version
-//	gettimeofday(&start, NULL);
-//	for(i=0; i<N; i++)
-//	  for(j=0; j<N; j++)
-//		for(k=0; k<N; k++)
-//		  Cs[i*N+j]+=A[i*N+k]*B[k*N+j];
-//	gettimeofday(&end, NULL);
-//
-//	timeCost=1000000*(end.tv_sec-start.tv_sec)+(end.tv_usec-start.tv_usec);
-//	timeCost/=1000000;
-//    printf("The squential version of matrix multiplication costs %lf seconds\n", timeCost);
+	gettimeofday(&start, NULL);
+	for(i=0; i<N; i++)
+	  for(j=0; j<N; j++)
+		for(k=0; k<N; k++)
+		  Cs[i*N+j]+=A[i*N+k]*B[k*N+j];
+	gettimeofday(&end, NULL);
+
+	timeCost=1000000*(end.tv_sec-start.tv_sec)+(end.tv_usec-start.tv_usec);
+	timeCost/=1000000;
+    printf("The squential version of matrix multiplication costs %lf seconds\n", timeCost);
 
     //////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////
@@ -71,25 +71,6 @@ int main(int argc, char** argv)
                 return -1;
             }
       }
-    printf("Verified Correctly\n");
-    printf("seq:\n");
-    
-    for (i = 0; i < N; ++i) {
-        for (j = 0; j < N; ++j) {
-            if (i == 100 && j == 100)
-                printf ("\n Value of c[%d][%d]:%f\n",i,j,Cs[i*N+j]);
-        }
-    }
-    
-    printf("parallel:\n");
-    
-    for (i = 0; i < N; ++i) {
-        for (j = 0; j < N; ++j) {
-            
-            if (i == 100 && j == 100)
-                printf ("\n Value of c[%d][%d]:%f\n",i,j,Cs[i*N+j]);
-        }
-    }
     
 
     // release resources and return
