@@ -31,7 +31,7 @@ void main (int argc, char** argv){
     }
     pi = step * sum;
     double endTime = omp_get_wtime();
-    printf("sequential done with pi = %f in %f seconds\n", pi, endTime - begin);
+    printf("sequential done with %d threads, pi = %f in %f seconds\n", numThreads, pi, endTime - begin);
     
     pi = 0.0;
     sum = 0.0;
@@ -93,7 +93,7 @@ void main (int argc, char** argv){
     pi = step * sum;
     
     endTime = omp_get_wtime();
-    printf("parallel end with %d threds, pi = %f in %f seconds\n", numThreads ,pi, endTime - begin);
+    printf("parallel end with %d threads, pi = %f in %f seconds\n", numThreads ,pi, endTime - begin);
     
     // start looped
     
@@ -117,7 +117,7 @@ void main (int argc, char** argv){
     
     endTime = omp_get_wtime();
     
-    printf("Looped end with pi = %f in %f seconds\n", pi, endTime - begin);
+    printf("Looped end with %d threads, pi = %f in %f seconds\n", numThreads, pi, endTime - begin);
     
 }
 
