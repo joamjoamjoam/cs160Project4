@@ -47,7 +47,7 @@ int main(int argc, char** argv)
     double begin = omp_get_wtime();
     
     // please change this into a parallel version
-    #pragma omp parallel for default(none) private(i,j,k) shared (Cp,A,B)
+    #pragma omp parallel for private(i,j,k) shared (Cp,A,B)
     for(i=0; i<N; i++)
         for(j=0; j<N; j++)
             for(k=0; k<N; k++)
