@@ -72,6 +72,22 @@ int main(int argc, char** argv)
             }
       }
     printf("Verified Correctly\n");
+    printf("seq:\n");
+    
+    for (i = 0; i < N; ++i) {
+        for (j = 0; j < N; ++j) {
+            printf ("\n Value of c[%d][%d]:%f\n",i,j,Cs[i*N+j]);
+        }
+    }
+    
+    printf("parallel:\n");
+    
+    for (i = 0; i < N; ++i) {
+        for (j = 0; j < N; ++j) {
+            printf ("\n Value of c[%d][%d]:%f\n",i,j,Cs[i*N+j]);
+        }
+    }
+    
 
     // release resources and return
     free(A);
