@@ -24,6 +24,7 @@ void main (int argc, char** argv){
     step = 1.0/(double) num_steps;
     for (i=0;i< num_steps; i++){
         x = (i+0.5)*step;
+
         sum = sum + 4.0/(1.0+x*x);
     }
     pi = step * sum;
@@ -48,6 +49,7 @@ void main (int argc, char** argv){
             
             start[i] = nextStartPoint;
             end[i] = endPoint;
+            
             nextStartPoint = endPoint;
         }
     }
@@ -69,6 +71,11 @@ void main (int argc, char** argv){
         // do calc
         for (i = start[myId]; i < end[myId]; i++) {
             myX = (i+0.5)*step;
+            
+            //            if (myId == 1 && i >= start[myId] && i <= start[myId] + 10) {
+            //                printf("Thread x = %f for step %d\n", myX, i);
+            //            }
+            
             mySum = mySum + 4.0/(1.0+myX*myX);
         }
         
@@ -91,25 +98,17 @@ void main (int argc, char** argv){
     begin = omp_get_wtime();
 # pragma omp parallel
     {
-        double mySum = 0;
-        int i = 0;
-        double myX = 0;
-        int myId = omp_get_thread_num();
-# pragma omp for
-        for (i = start[myId]; i < end[myId]; i++) {
-            myX = (i+0.5)*step;
-            
-            mySum = mySum + 4.0/(1.0+myX*myX);
-        }
-        
-        mySums[myId] = mySum;
+        double loopX = 0;
+        double loopSum = 0;
+        step = 1.0/(double) num_steps;
+        # pragma omp for reduction (+:sum)
+            for (i=0; i < num_steps; i++){
+                loopX = (i+0.5)*step;
+                sum = sum + 4.0/(1.0+loopX*loopX);
+            }
     }
-    
-    for (i = 0; i < numThreads; i++) {
-        sum += mySums[i];
-    }
-    
     pi = step * sum;
+    
     
     endTime = omp_get_wtime();
     
